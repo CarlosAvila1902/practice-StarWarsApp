@@ -1,6 +1,6 @@
 import NavBar from "./components/navbar";
 import People from "./pages/People.jsx";
-import PersonDetails from "./pages/PersonDetails.jsx";
+import PersonDetails from "./pages/PeopleDetails.jsx";
 import Films from "./pages/Films.jsx";
 import Starships from "./pages/Starships.jsx";
 import FilmDetails from "./pages/FilmDetails.jsx";

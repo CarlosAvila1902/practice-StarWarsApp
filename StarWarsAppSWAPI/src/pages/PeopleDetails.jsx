@@ -5,21 +5,38 @@ function PersonDetails() {
   const { personId } = useParams();
   const [person, setPerson] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  async function fetchPersonData() {
-    const response = await fetch(`https://swapi.dev/api/people/${personId}/`);
-    const data = await response.json();
-
-    setPerson(data);
-    setLoading(false);
-  }
-  //no olvidar usar useEffect para llamar a fetchPersonData
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetchPersonData();
   }, [personId]);
 
+  async function fetchPersonData() {
+    try {
+      const response = await fetch(`https://swapi.dev/api/people/${personId}/`);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setPerson(data);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error al traer los datos", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   if (loading) {
     return <h2>Cargando...</h2>;
+  }
+
+  if (error) {
+    return <h2 style={{ color: "red" }}>Error: {error}</h2>;
   }
   return (
     <div>
@@ -37,7 +54,7 @@ function PersonDetails() {
         <strong>Color de ojos:</strong> {person.eye_color}
       </p>
       <p>
-        <strong>Género:</strong> {person.eye_color}
+        <strong>Género:</strong> {person.gender}
       </p>
       <p>
         <strong>Peso:</strong> {person.mass} kg
@@ -48,16 +65,14 @@ function PersonDetails() {
       <p>
         <strong>Color de piel:</strong> {person.skin_color}
       </p>
-      <p>
-        <strong>Mundo Natal:</strong> {person.homeworld}
-      </p>
+
+      {/* (Vi que tenías 'Mundo Natal' repetido, borré uno) */}
+
       <h4>Peliculas donde aparece</h4>
       <ul>
         {person.films.map((filmUrl, index) => {
-          //extraer el id de la pelicula de la url
           const urlParts = filmUrl.split("/");
           const filmsId = urlParts[urlParts.length - 2];
-
           return (
             <li key={index}>
               <Link to={`/films/${filmsId}`}>Película ID: {filmsId}</Link>

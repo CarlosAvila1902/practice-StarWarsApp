@@ -1,30 +1,65 @@
 import { useState, useEffect } from "react"; //le hooks
 import { Link } from "react-router-dom"; //para importar los enlces
 
-//acuerdate de las mayusculas en los nombres de los componentes...
 function People() {
-  const [peopleList, setPeopleList] = useState([]); //estado para guardar la lista de personajes
-  const [loading, setLoading] = useState(true); //estado para manejar la carga
+  const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/people/");
+  const [peopleList, setPeopleList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [nextUrl, setNextUrl] = useState(null);
+  const [prevUrl, setPrevUrl] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     async function fetchData() {
-      const response = await fetch("https://swapi.dev/api/people");
-      const data = await response.json();
-      setPeopleList(data.results);
-      setLoading(false);
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        const data = await response.json();
+        setPeopleList(data.results);
+        setNextUrl(data.next);
+        setPrevUrl(data.previous);
+      } catch (error) {
+        setError(error.message);
+        console.error("Error al traer los datos", error);
+      } finally {
+        setLoading(false);
+      }
     }
-    fetchData(); //llamamos para traer datos
-  }, []);
+    fetchData();
+  }, [apiUrl]);
 
-  
+  const handleNext = () => {
+    setApiUrl(nextUrl);
+  };
+  const handlePrev = () => {
+    setApiUrl(prevUrl);
+  };
 
   if (loading) {
     return <h2>cargando...</h2>;
   }
-
+  if (error) {
+    return <h2 style={{ color: "red" }}>wait holdup: {error}</h2>;
+  }
   return (
     <div>
       <h2>Lista de Personajes</h2>
+      <div className="pagination-controls" style={{ margin: "1rem 0" }}>
+        <button onClick={handlePrev} disabled={!prevUrl}>
+          Anterior
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={!nextUrl}
+          style={{ marginLeft: "1rem" }}
+        >
+          Siguiente
+        </button>
+      </div>
       <ul>
         {peopleList.map((person) => {
           const urlParts = person.url.split("/");
