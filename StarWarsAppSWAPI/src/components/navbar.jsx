@@ -1,16 +1,15 @@
-import { NavLink } from "react-router-dom"
-
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
-    return (
+  return (
     <nav>
       <h3>Navegación SWAPI</h3>
       <NavLink to="/">Inicio</NavLink>
-      <NavLink to="/characters">Personajes</NavLink>
+      <NavLink to="/people">Personajes</NavLink>
       <NavLink to="/films">Películas</NavLink>
       <NavLink to="/starships">Naves Estelares</NavLink>
     </nav>
-    );
+  );
 }
 
 export default NavBar;
