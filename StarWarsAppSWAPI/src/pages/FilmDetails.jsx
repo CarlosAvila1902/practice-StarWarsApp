@@ -5,20 +5,37 @@ function FilmDetails() {
   const { filmId } = useParams();
   const [film, setFilm] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  async function fetchFilmData() {
-    const response = await fetch(`https://swapi.dev/api/films/${filmId}/`);
-    const data = await response.json();
-    setFilm(data);
-    setLoading(false);
-  }
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetchFilmData();
   }, [filmId]);
+
+  async function fetchFilmData() {
+    try {
+      const response = await fetch(`https://swapi.dev/api/films/${filmId}/`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      setFilm(data);
+    } catch (error) {
+      setError(error.message);
+      console.error("error al traer los datos", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (loading) {
     return <h2>Cargando...</h2>;
   }
+  if (error) {
+    return <h2 style={{ color: "red" }}>Error: {error}</h2>;
+  }
+
   return (
     <div>
       <h2>Detalles: {film.title}</h2>
