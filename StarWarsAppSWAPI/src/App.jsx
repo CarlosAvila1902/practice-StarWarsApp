@@ -7,6 +7,7 @@ import FilmDetails from "./pages/FilmDetails.jsx";
 import StarshipDetails from "./pages/StarshipDetails.jsx"; // Importa el detalle de la nave
 import Species from "./pages/Species.jsx";
 import SpeciesDetails from "./pages/SpeciesDetails.jsx";
+import Vehicles from "./pages/vehicles.jsx";
 import VehicleDetails from "./pages/VehicleDetails.jsx";
 import { Routes, Route } from "react-router-dom"; // No necesitas NavLink aquí
 import "./App.css";
