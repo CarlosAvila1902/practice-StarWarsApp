@@ -17,8 +17,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<h2>¡Bienvenido! Elige un recurso.</h2>} />
-          
-          <Route path="/Species" element={<Species />} />
+
+          <Route path="/species" element={<Species />} />
           <Route path="/species/:speciesId" element={<SpeciesDetails />} />
 
           <Route path="/people" element={<People />} />
@@ -35,6 +35,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
