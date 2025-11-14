@@ -1,4 +1,4 @@
-import NavBar from "./components/navbar";
+import NavBar from "./components/Navbar.jsx";
 import People from "./pages/People.jsx";
 import PersonDetails from "./pages/PeopleDetails.jsx";
 import Films from "./pages/Films.jsx";
@@ -22,7 +22,7 @@ function App() {
           <Route path="/Species/:speciesId" element={<SpeciesDetails />} />
 
           <Route path="/people" element={<People />} />
-          <Route path="/people/:personId" element={<PersonDetails />} />
+          <Route path="/people/:peopleId" element={<PeopleDetails />} />
 
           <Route path="/films" element={<Films />} />
           <Route path="/films/:filmId" element={<FilmDetails />} />
