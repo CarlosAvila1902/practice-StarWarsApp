@@ -1,6 +1,6 @@
 import NavBar from "./components/Navbar.jsx";
 import People from "./pages/People.jsx";
-import PersonDetails from "./pages/PeopleDetails.jsx";
+import PeopleDetails from "./pages/PeopleDetails.jsx";
 import Films from "./pages/Films.jsx";
 import Starships from "./pages/Starships.jsx";
 import FilmDetails from "./pages/FilmDetails.jsx";
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<h2>¡Bienvenido! Elige un recurso.</h2>} />
           
           <Route path="/Species" element={<Species />} />
-          <Route path="/Species/:speciesId" element={<SpeciesDetails />} />
+          <Route path="/species/:speciesId" element={<SpeciesDetails />} />
 
           <Route path="/people" element={<People />} />
           <Route path="/people/:peopleId" element={<PeopleDetails />} />
