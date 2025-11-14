@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav>
+    <nav class="navbar text-center navbar-dark bg-dark">
       <h3>Navegación SWAPI</h3>
       <NavLink to="/">Inicio</NavLink>
       <NavLink to="/people">Personajes</NavLink>
