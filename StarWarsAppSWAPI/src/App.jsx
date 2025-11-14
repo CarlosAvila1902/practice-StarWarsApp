@@ -5,7 +5,8 @@ import Films from "./pages/Films.jsx";
 import Starships from "./pages/Starships.jsx";
 import FilmDetails from "./pages/FilmDetails.jsx";
 import StarshipDetails from "./pages/StarshipDetails.jsx"; // Importa el detalle de la nave
-
+import Species from "./pages/Species.jsx";
+import SpeciesDetails from "./pages/SpeciesDetails.jsx";
 import { Routes, Route } from "react-router-dom"; // No necesitas NavLink aquí
 import "./App.css";
 
@@ -16,6 +17,9 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<h2>¡Bienvenido! Elige un recurso.</h2>} />
+          
+          <Route path="/Species" element={<Species />} />
+          <Route path="/Species/:speciesId" element={<SpeciesDetails />} />
 
           <Route path="/people" element={<People />} />
           <Route path="/people/:personId" element={<PersonDetails />} />
@@ -25,7 +29,6 @@ function App() {
 
           <Route path="/starships" element={<Starships />} />
 
-          {/* CORRECCIÓN: :starshipId debe estar en minúscula para coincidir con useParams() */}
           <Route path="/starships/:starshipId" element={<StarshipDetails />} />
         </Routes>
       </main>

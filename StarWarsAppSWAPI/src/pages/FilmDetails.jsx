@@ -1,5 +1,6 @@
 import { useState, useEffect, use } from "react";
 import { useParams, Link } from "react-router-dom";
+import { fetchDataFromApi } from "../services/swapiService";
 
 function FilmDetails() {
   const { filmId } = useParams();
@@ -15,15 +16,11 @@ function FilmDetails() {
 
   async function fetchFilmData() {
     try {
-      const response = await fetch(`https://swapi.dev/api/films/${filmId}/`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
+      const url=`https://swapi.dev/api/films/${filmId}/`;
+      const data = await fetchDataFromApi(url);
       setFilm(data);
-    } catch (error) {
-      setError(error.message);
-      console.error("error al traer los datos", error);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }

@@ -10,6 +10,7 @@ function Starships() {
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
     async function fetchData() {
       const response = await fetch(apiUrl);
       const data = await response.json();

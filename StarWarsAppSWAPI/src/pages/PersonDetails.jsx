@@ -61,8 +61,6 @@ function PersonDetails() {
         <strong>Color de piel:</strong> {person.skin_color}
       </p>
 
-      {/* (Vi que tenías 'Mundo Natal' repetido, borré uno) */}
-
       <h4>Peliculas donde aparece</h4>
       <ul>
         {person.films.map((filmUrl, index) => {

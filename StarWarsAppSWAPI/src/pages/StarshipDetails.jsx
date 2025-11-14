@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { fetchDataFromApi } from "../services/swapiService";
 
 function StarshipDetails() {
   const { starshipId } = useParams();
@@ -15,18 +16,11 @@ function StarshipDetails() {
 
   async function fetchStarshipData() {
     try {
-      const response = await fetch(
-        `https://swapi.dev/api/starships/${starshipId}/`
-      );
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const url=`https://swapi.dev/api/starships/${starshipId}/`;
+      const data = await fetchDataFromApi(url);
       setStarship(data);
-    } catch (error) {
-      setError(error.message);
-      console.error("Error al traer los datos", error);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -34,7 +28,8 @@ function StarshipDetails() {
 
   if (loading) {
     return <h2>Cargando detalles de la nave...</h2>;
-  } if (error) {
+  }
+  if (error) {
     return <h2 style={{ color: "red" }}>Error: {error}</h2>;
   }
   return (
