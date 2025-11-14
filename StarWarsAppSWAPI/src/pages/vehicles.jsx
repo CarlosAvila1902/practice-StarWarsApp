@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"; //le hooks
 import { Link } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService.js";
 
-function Vehicle() {
+function Vehicles() {
   const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/vehicles/");
   const [vehicleList, setVehicleList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,4 +71,4 @@ function Vehicle() {
   );
 }
 
-export default Vehicle;
+export default Vehicles;

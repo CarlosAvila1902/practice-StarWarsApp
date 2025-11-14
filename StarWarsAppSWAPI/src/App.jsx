@@ -7,7 +7,6 @@ import FilmDetails from "./pages/FilmDetails.jsx";
 import StarshipDetails from "./pages/StarshipDetails.jsx"; // Importa el detalle de la nave
 import Species from "./pages/Species.jsx";
 import SpeciesDetails from "./pages/SpeciesDetails.jsx";
-import Vehicle from "./pages/vehicles.jsx";
 import VehicleDetails from "./pages/VehicleDetails.jsx";
 import { Routes, Route } from "react-router-dom"; // No necesitas NavLink aquí
 import "./App.css";
@@ -28,6 +27,8 @@ function App() {
           <Route path="/films/:filmId" element={<FilmDetails />} />
           <Route path="/starships" element={<Starships />} />
           <Route path="/starships/:starshipId" element={<StarshipDetails />} />
+          <Route path="/vehicles" element={<Vehicles />} />
+          <Route path="/vehicles/:vehicleId" element={<VehicleDetails />} />
         </Routes>
       </main>
     </div>
