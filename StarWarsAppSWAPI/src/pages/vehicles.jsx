@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"; //le hooks
 import { Link } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService.js";
 
-function People() {
-  const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/people/");
-  const [peopleList, setPeopleList] = useState([]);
+function Vehicle() {
+  const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/vehicles/");
+  const [vehicleList, setVehicleList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
@@ -16,7 +16,7 @@ function People() {
     async function fetchData() {
       try {
         const data = await fetchDataFromApi(apiUrl);
-        setPeopleList(data.results);
+        setVehicleList(data.results);
         setNextUrl(data.next);
         setPrevUrl(data.previous);
       } catch (err) {
@@ -43,7 +43,7 @@ function People() {
   }
   return (
     <div>
-      <h2>Lista de Personajes</h2>
+      <h2>Lista de Vehiculos</h2>
       <div className="pagination-controls" style={{ margin: "1rem 0" }}>
         <button onClick={handlePrev} disabled={!prevUrl}>
           Anterior
@@ -57,12 +57,12 @@ function People() {
         </button>
       </div>
       <ul>
-        {peopleList.map((person) => {
-          const urlParts = person.url.split("/");
-          const personId = urlParts[urlParts.length - 2];
+        {vehicleList.map((vehicle) => {
+          const urlParts = vehicle.url.split("/");
+          const vehicleId = urlParts[urlParts.length - 2];
           return (
-            <li key={person.name}>
-              <Link to={`/people/${personId}`}>{person.name}</Link>
+            <li key={vehicle.name}>
+              <Link to={`/vehicle/${vehicleId}`}>{vehicle.name}</Link>
             </li>
           );
         })}
@@ -71,4 +71,4 @@ function People() {
   );
 }
 
-export default People;
+export default Vehicle;
