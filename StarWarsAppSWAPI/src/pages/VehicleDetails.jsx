@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
 
 function VehicleDetails() {
@@ -16,7 +16,7 @@ function VehicleDetails() {
 
   async function fetchVehicleData() {
     try {
-      const url=`https://swapi.dev/api/vehicles/${vehicleId}/`;
+      const url = `https://swapi.dev/api/vehicles/${vehicleId}/`;
       const data = await fetchDataFromApi(url);
       setVehicle(data);
     } catch (err) {
@@ -39,7 +39,7 @@ function VehicleDetails() {
         <strong>Modelo:</strong> {vehicle.model}
       </p>
       <p>
-        <strong>Fabricante:</strong> {vehicle.length}
+        <strong>Fabricante:</strong> {vehicle.manufacturer}
       </p>
       <p>
         <strong>Costo:</strong> {vehicle.cost_in_credits} créditos
@@ -56,12 +56,35 @@ function VehicleDetails() {
       <p>
         <strong>consumibles: hasta</strong> {vehicle.consumables} meses
       </p>
-      <p>
-        <strong>Pilotos:</strong> {vehicle.consumables}
-      </p>
-      <p>
-        <strong>Peliculas donde aparece:</strong> {vehicle.films}
-      </p>
+      <h4>
+      Pilotos que han usado este vehiculo:
+      </h4>
+      <ul>
+        {vehicle.pilots.map((pilotUrl, index) =>{
+          const urlParts = pilotUrl.split("/");
+          const pilotId = urlParts[urlParts.length - 2];
+          return (
+            <li key={index}>
+              <Link to={`/people/${pilotId}`}>
+                Piloto ID: {pilotId}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+      <h4>Filmes (Donde aparece este vehiculo):</h4>
+      <ul>
+        {vehicle.films.map((filmUrl, index) => {
+          const urlParts = filmUrl.split("/");
+          const filmId = urlParts[urlParts.length - 2];
+
+          return (
+            <li key={index}>
+              <Link to={`/films/${filmId}`}>Película ID: {filmId}</Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
