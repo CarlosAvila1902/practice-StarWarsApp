@@ -2,23 +2,23 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
 
-function PersonDetails() {
-  const { personId } = useParams();
-  const [person, setPerson] = useState(null);
+function PeopleDetails() {
+  const { peopleId } = useParams();
+  const [people, setPeople] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetchPersonData();
-  }, [personId]);
+    fetchPeopleData();
+  }, [peopleId]);
 
-  async function fetchPersonData() {
+  async function fetchPeopleData() {
     try {
-      const url = `https://swapi.dev/api/people/${personId}/`;
+      const url = `https://swapi.dev/api/people/${peopleId}/`;
       const data = await fetchDataFromApi(url);
-      setPerson(data);
+      setPeople(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -35,37 +35,35 @@ function PersonDetails() {
   }
   return (
     <div>
-      <h2>Detalles: {person.name}</h2>
+      <h2>Detalles: {people.name}</h2>
       <p>
-        <strong>Altura:</strong> {person.height} cm
+        <strong>Altura:</strong> {people.height} cm
       </p>
       <p>
-        <strong>Año de Nacimiento:</strong> {person.birth_year}
+        <strong>Año de Nacimiento:</strong> {people.birth_year}
       </p>
       <p>
-        <strong>Color de Pelo:</strong> {person.hair_color}
+        <strong>Color de Pelo:</strong> {people.hair_color}
       </p>
       <p>
-        <strong>Color de ojos:</strong> {person.eye_color}
+        <strong>Color de ojos:</strong> {people.eye_color}
       </p>
       <p>
-        <strong>Género:</strong> {person.gender}
+        <strong>Género:</strong> {people.gender}
       </p>
       <p>
-        <strong>Peso:</strong> {person.mass} kg
+        <strong>Peso:</strong> {people.mass} kg
       </p>
       <p>
-        <strong>Mundo Natal:</strong> {person.homeworld}
+        <strong>Mundo Natal:</strong> {people.homeworld}
       </p>
       <p>
-        <strong>Color de piel:</strong> {person.skin_color}
+        <strong>Color de piel:</strong> {people.skin_color}
       </p>
-
-      {/* (Vi que tenías 'Mundo Natal' repetido, borré uno) */}
 
       <h4>Peliculas donde aparece</h4>
       <ul>
-        {person.films.map((filmUrl, index) => {
+        {people.films.map((filmUrl, index) => {
           const urlParts = filmUrl.split("/");
           const filmsId = urlParts[urlParts.length - 2];
           return (
@@ -79,4 +77,4 @@ function PersonDetails() {
   );
 }
 
-export default PersonDetails;
+export default PeopleDetails;
