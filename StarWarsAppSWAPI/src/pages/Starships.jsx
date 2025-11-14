@@ -11,7 +11,6 @@ function Starships() {
 
   useEffect(() => {
     setLoading(true);
-    setError(null);
     async function fetchData() {
       try {
         const data = await fetchDataFromApi(apiUrl);
