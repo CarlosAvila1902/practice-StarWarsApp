@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { fetchDataFromApi } from "../services/swapiService.js";
 
 function Starships() {
   const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/starships/");
@@ -12,12 +13,16 @@ function Starships() {
     setLoading(true);
     setError(null);
     async function fetchData() {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      setStarshipList(data.results);
-      setNextUrl(data.next);
-      setPrevUrl(data.previous);
-      setLoading(false);
+      try {
+        const data = await fetchDataFromApi(apiUrl);
+        setStarshipList(data.results);
+        setNextUrl(data.next);
+        setPrevUrl(data.previous);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
   }, [apiUrl]);
@@ -37,14 +42,18 @@ function Starships() {
   return (
     <div>
       <h2>Lista de Naves</h2>
-      <div className="pagination-controls" style={{ margin: '1rem 0' }}>
-      <button onClick={handlePrev} disabled={!prevUrl}>
-        Anterior
-      </button>
-      <button onClick={handleNext} disabled={!nextUrl} style={{ marginLeft: '1rem' }}>
-        Siguiente
-      </button>
-    </div>
+      <div className="pagination-controls" style={{ margin: "1rem 0" }}>
+        <button onClick={handlePrev} disabled={!prevUrl}>
+          Anterior
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={!nextUrl}
+          style={{ marginLeft: "1rem" }}
+        >
+          Siguiente
+        </button>
+      </div>
       <ul>
         {starshipList.map((starship) => {
           const urlParts = starship.url.split("/");
