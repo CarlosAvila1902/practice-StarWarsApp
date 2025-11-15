@@ -62,7 +62,7 @@ function Vehicles() {
           const vehicleId = urlParts[urlParts.length - 2];
           return (
             <li key={vehicle.name}>
-              <Link to={`/vehicle/${vehicleId}`}>{vehicle.name}</Link>
+              <Link to={`/vehicles/${vehicleId}`}>{vehicle.name}</Link>
             </li>
           );
         })}

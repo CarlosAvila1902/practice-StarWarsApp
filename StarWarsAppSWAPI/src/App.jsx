@@ -18,7 +18,7 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<h2>¡Bienvenido! Elige un recurso.</h2>} />
+          <Route path="/" element={<h2>Welcome! Elige un recurso.</h2>} />
 
           <Route path="/species" element={<Species />} />
           <Route path="/species/:speciesId" element={<SpeciesDetails />} />
