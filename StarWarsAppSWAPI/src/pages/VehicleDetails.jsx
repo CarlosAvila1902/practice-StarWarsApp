@@ -61,7 +61,7 @@ function VehicleDetails() {
         <strong>capacidad de carga:</strong> {vehicle.cargo_capacity} KG
       </p>
       <p>
-        <strong>Duracion de raciones:</strong> {vehicle.consumables} meses
+        <strong>Duracion de raciones:</strong> {vehicle.consumables}
       </p>
       <p>
         <strong>Velocidad maxima en atmosfera</strong>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
+import ResourceLink from "../components/ResourceLink.jsx";
 
 function SpeciesDetails() {
   const { speciesId } = useParams();
@@ -16,7 +17,7 @@ function SpeciesDetails() {
 
   async function fetchSpeciesData() {
     try {
-      const url=`https://swapi.dev/api/species/${speciesId}/`;
+      const url = `https://swapi.dev/api/species/${speciesId}/`;
       const data = await fetchDataFromApi(url);
       setSpecies(data);
     } catch (err) {
@@ -36,16 +37,16 @@ function SpeciesDetails() {
     <div>
       <h2>Detalles: {species.name}</h2>
       <p>
-        <strong>Clasificacion:</strong> {species.classification }
+        <strong>Clasificacion:</strong> {species.classification}
       </p>
       <p>
-        <strong>Designacion:</strong> {species.designation }
+        <strong>Designacion:</strong> {species.designation}
       </p>
       <p>
-        <strong>Esperanza de vida:</strong> {species.average_lifespan  } años
+        <strong>Esperanza de vida:</strong> {species.average_lifespan} años
       </p>
       <p>
-        <strong>Color de ojos:</strong> {species.eye_colors }
+        <strong>Color de ojos:</strong> {species.eye_colors}
       </p>
       <p>
         <strong>Color de pelo:</strong> {species.hair_colors}
@@ -59,38 +60,34 @@ function SpeciesDetails() {
       <p>
         <strong>mundo natal:</strong> {species.homeworld}
       </p>
-      <h4>Personas (Individuos de esta especie):</h4>
-    <ul>
-      {species.people.map((personUrl, index) => {
-        // Extraemos el ID de la URL
-        const urlParts = personUrl.split('/');
-        const personId = urlParts[urlParts.length - 2];
-        
-        return (
-          <li key={index}>
-            <Link to={`/people/${personId}`}>
-              Personaje ID: {personId}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-
-    <h4>Filmes (Donde aparece esta especie):</h4>
-    <ul>
-      {species.films.map((filmUrl, index) => {
-        const urlParts = filmUrl.split('/');
-        const filmId = urlParts[urlParts.length - 2];
-        
-        return (
-          <li key={index}>
-            <Link to={`/films/${filmId}`}>
-              Película ID: {filmId}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+      <h4>Personajes de esta especie:</h4>
+      <ul>
+        {species.people.length > 0 ? (
+          species.people.map((peopleUrl, index) => (
+            <ResourceLink
+              key={peopleUrl || index}
+              resourceUrl={peopleUrl}
+              resourceType="people"
+            />
+          ))
+        ) : (
+          <li>No se encontraron pilotos.</li>
+        )}
+      </ul>
+      <h4>Filmes (Donde aparece esta especie):</h4>
+      <ul>
+        {species.films.length > 0 ? (
+          species.films.map((filmUrl, index) => (
+            <ResourceLink
+              key={filmUrl || index}
+              resourceUrl={filmUrl}
+              resourceType="films"
+            />
+          ))
+        ) : (
+          <li>No aparece en películas.</li>
+        )}
+      </ul>
     </div>
   );
 }

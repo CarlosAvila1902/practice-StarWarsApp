@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
+import ResourceLink from "../components/ResourceLink.jsx";
+
+
 
 function StarshipDetails() {
   const { starshipId } = useParams();
@@ -71,6 +74,21 @@ function StarshipDetails() {
       <p>
         <strong>Duracion de raciones:</strong> {starship.consumables} KG
       </p>
+      <h4>Filmes (Donde aparece esta nave):</h4>
+      <h4>Filmes (Donde aparece este vehiculo):</h4>
+      <ul>
+        {starship.films.length > 0 ? (
+          starship.films.map((filmUrl, index) => (
+            <ResourceLink
+              key={filmUrl || index}
+              resourceUrl={filmUrl}
+              resourceType="films"
+            />
+          ))
+        ) : (
+          <li>No aparece en películas.</li>
+        )}
+      </ul>
 
     </div>
   );
