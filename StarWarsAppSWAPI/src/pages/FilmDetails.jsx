@@ -34,7 +34,8 @@ function FilmDetails() {
   }
 
   return (
-    <div>
+    <div className="card">
+      <div></div>
       <h2>Detalles: {film.title}</h2>
       <p>
         <strong>Episodio:</strong> {film.episode_id}

@@ -45,11 +45,11 @@ function Films() {
   return (
     <div>
       <h2>Lista de Peliculas</h2>
-      <div className="pagination-controls">
-        <button onClick={handlePrev} disabled={!prevUrl}>
+      <div className="pagination-controls btn-group my-3">
+        <button className="btn btn-outline-warning" onClick={handlePrev} disabled={!prevUrl}>
           Anterior
         </button>
-        <button onClick={handleNext} disabled={!nextUrl}>
+        <button className="btn btn-outline-warning" onClick={handleNext} disabled={!nextUrl}>
           Siguiente
         </button>
         <div>

@@ -16,10 +16,9 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <main>
+      <main className="container mt-4 mb-5">
         <Routes>
-          <Route path="/" element={<h2>Welcome! Elige un recurso.</h2>} />
-
+          <Route path="/" element={<h2>Bienvenido! Elige un recurso.</h2>} />
           <Route path="/species" element={<Species />} />
           <Route path="/species/:speciesId" element={<SpeciesDetails />} />
           <Route path="/people" element={<People />} />

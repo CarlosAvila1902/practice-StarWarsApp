@@ -44,15 +44,11 @@ function Species() {
   return (
     <div>
       <h2>Lista de Especies</h2>
-      <div className="pagination-controls" style={{ margin: "1rem 0" }}>
-        <button onClick={handlePrev} disabled={!prevUrl}>
+      <div className="pagination-controls btn-group my-3">
+        <button className="btn btn-outline-warning" onClick={handlePrev} disabled={!prevUrl}>
           Anterior
         </button>
-        <button
-          onClick={handleNext}
-          disabled={!nextUrl}
-          style={{ marginLeft: "1rem" }}
-        >
+        <button className="btn btn-outline-warning" onClick={handleNext} disabled={!nextUrl}>
           Siguiente
         </button>
       </div>
