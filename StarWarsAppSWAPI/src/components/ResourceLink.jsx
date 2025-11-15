@@ -37,7 +37,7 @@ const displayName = data.name || data.title || "Ver recurso";
 
 return(
     <li>
-        <Link to={`/${resourceType}/${resourceId}`}></Link>
+        <Link to={`/${resourceType}/${resourceId}`}>{displayName}</Link>
     </li>
 );
 }

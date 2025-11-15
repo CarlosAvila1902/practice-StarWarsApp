@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
+import ResourceLink from "../components/ResourceLink.jsx";
 
 function PeopleDetails() {
   const { peopleId } = useParams();
@@ -63,15 +64,17 @@ function PeopleDetails() {
 
       <h4>Peliculas donde aparece</h4>
       <ul>
-        {people.films.map((filmUrl, index) => {
-          const urlParts = filmUrl.split("/");
-          const filmsId = urlParts[urlParts.length - 2];
-          return (
-            <li key={index}>
-              <Link to={`/films/${filmsId}`}>Película ID: {filmsId}</Link>
-            </li>
-          );
-        })}
+        {people.films.length > 0 ? (
+          people.films.map((filmUrl, index) => (
+            <ResourceLink
+              key={filmUrl || index}
+              resourceUrl={filmUrl}
+              resourceType="films"
+            />
+          ))
+        ) : (
+          <li>No aparece en películas conocidas.</li>
+        )}
       </ul>
     </div>
   );

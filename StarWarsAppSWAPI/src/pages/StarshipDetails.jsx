@@ -39,14 +39,39 @@ function StarshipDetails() {
         <strong>Modelo:</strong> {starship.model}
       </p>
       <p>
+        <strong>Clase de nave: </strong>{starship.starship_class}
+      </p>
+      <p>
         <strong>Fabricante:</strong> {starship.manufacturer}
       </p>
       <p>
         <strong>Costo:</strong> {starship.cost_in_credits} créditos
       </p>
       <p>
+        <strong>Dimensiones: </strong>{starship.length} metros
+      </p>
+      <p>
+        <strong>Tripulacion escencial</strong>{starship.crew}
+      </p>
+      <p>
         <strong>Pasajeros:</strong> {starship.passengers}
       </p>
+      <p>
+        <strong>Maxima velocidad en atmosfera:</strong> {starship.max_atmosphering_speed} km/h
+      </p>
+      <p>
+        <strong>Hiperimpulsor:</strong>{starship.hyperdrive_rating}
+      </p>
+      <p>
+        <strong>MGLT:</strong> {starship.MGLT}
+      </p>
+      <p>
+        <strong>Capacidad de carga:</strong> {starship.cargo_capacity} KG
+      </p>
+      <p>
+        <strong>Duracion de raciones:</strong> {starship.consumables} KG
+      </p>
+
     </div>
   );
 }

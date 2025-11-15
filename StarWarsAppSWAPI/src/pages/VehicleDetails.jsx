@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../services/swapiService";
 import ResourceLink from "../components/ResourceLink.jsx";
 
@@ -58,13 +58,13 @@ function VehicleDetails() {
         <strong>Tripulacion esencial:</strong> {vehicle.crew} tripulantes
       </p>
       <p>
-        <strong>capacidad maxima:</strong> {vehicle.cargo_capacity} KG
+        <strong>capacidad de carga:</strong> {vehicle.cargo_capacity} KG
       </p>
       <p>
-        <strong>consumibles: hasta</strong> {vehicle.consumables} meses
+        <strong>Duracion de raciones:</strong> {vehicle.consumables} meses
       </p>
       <p>
-        <strong>Velocidad maxima en atmosfera</strong>{" "}
+        <strong>Velocidad maxima en atmosfera</strong>
         {vehicle.max_atmosphering_speed} km/h
       </p>
       <h4>Pilotos que han usado este vehiculo:</h4>
