@@ -20,7 +20,6 @@ const { data: filmsList, loading, error, handleNext, handlePrev, prevUrl, nextUr
           prevUrl={prevUrl}
           nextUrl={nextUrl}
         />
-        <div>
           <ul>
             {filmsList.map((film) => {
               const urlParts = film.url.split("/");
@@ -32,7 +31,6 @@ const { data: filmsList, loading, error, handleNext, handlePrev, prevUrl, nextUr
               );
             })}
           </ul>
-        </div>
     </div>
   );
 }

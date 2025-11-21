@@ -2,9 +2,8 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <nav className="navbar navbar-expand navbar-dark bg-dark align-center">
       <div classname="container-fluid">
-        <h3 classname="navbar-brand mb-0 h1">STARWARS</h3>
           <div className="navbar-nav">
         <NavLink className="nav-link" to="/">
           Inicio

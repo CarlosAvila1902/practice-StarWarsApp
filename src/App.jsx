@@ -1,3 +1,4 @@
+import Home from "./pages/Home.jsx";
 import NavBar from "./components/Navbar.jsx";
 import People from "./pages/People.jsx";
 import PeopleDetails from "./pages/PeopleDetails.jsx";
@@ -17,10 +18,10 @@ import PlanetDetails from "./pages/planetDetails.jsx";
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <NavBar className="container mt-4 mb-5"/>
       <main className="container mt-4 mb-5">
         <Routes>
-          <Route path="/" element={<h2>Bienvenido! Elige un recurso.</h2>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/planets" element={<Planets />} />
           <Route path="/planets/:planetId" element={<PlanetDetails />} />
           <Route path="/species" element={<Species />} />
