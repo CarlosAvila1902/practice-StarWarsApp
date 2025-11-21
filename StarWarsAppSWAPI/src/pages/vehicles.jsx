@@ -4,7 +4,7 @@ import PaginationControls from "../components/PaginationControl.jsx";
 
 
 function Vehicles() {
-const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
+const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/vehicles/");
 
   if (loading) {
     return <h2>cargando...</h2>;
@@ -15,14 +15,12 @@ const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, next
   return (
     <div>
       <h2>Lista de Vehiculos</h2>
-      <div className="pagination-controls btn-group my-3">
          <PaginationControls
           handlePrev={handlePrev}
           handleNext={handleNext}
           prevUrl={prevUrl}
           nextUrl={nextUrl}
         />
-      </div>
       <ul>
         {vehicleList.map((vehicle) => {
           const urlParts = vehicle.url.split("/");

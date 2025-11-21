@@ -14,7 +14,6 @@ const { data: filmsList, loading, error, handleNext, handlePrev, prevUrl, nextUr
   return (
     <div>
       <h2>Lista de Peliculas</h2>
-      <div className="pagination-controls btn-group my-3">
          <PaginationControls
           handlePrev={handlePrev}
           handleNext={handleNext}
@@ -34,7 +33,6 @@ const { data: filmsList, loading, error, handleNext, handlePrev, prevUrl, nextUr
             })}
           </ul>
         </div>
-      </div>
     </div>
   );
 }

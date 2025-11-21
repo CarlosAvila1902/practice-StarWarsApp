@@ -4,7 +4,7 @@ import PaginationControls from "../components/PaginationControl.jsx";
 
 
 function Starships() {
-const { data: starshipList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
+const { data: starshipList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/starships/");
 
 
   if (loading) {
@@ -16,14 +16,12 @@ const { data: starshipList, loading, error, handleNext, handlePrev, prevUrl, nex
   return (
     <div>
       <h2>Lista de Naves</h2>
-      <div className="pagination-controls btn-group my-3">
          <PaginationControls
           handlePrev={handlePrev}
           handleNext={handleNext}
           prevUrl={prevUrl}
           nextUrl={nextUrl}
         />
-      </div>
       <ul>
         {starshipList.map((starship) => {
           const urlParts = starship.url.split("/");

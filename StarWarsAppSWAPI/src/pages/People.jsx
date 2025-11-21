@@ -22,14 +22,12 @@ function People() {
   return (
     <div>
       <h2>Lista de Personajes</h2>
-      <div className="pagination-controls btn-group my-3">
         <PaginationControls
           handlePrev={handlePrev}
           handleNext={handleNext}
           prevUrl={prevUrl}
           nextUrl={nextUrl}
         />
-      </div>
       <ul>
         {peopleList.map((person) => {
           const urlParts = person.url.split("/");

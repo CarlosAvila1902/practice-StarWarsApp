@@ -16,14 +16,12 @@ function Species() {
   return (
     <div>
       <h2>Lista de Especies</h2>
-      <div className="pagination-controls btn-group my-3">
          <PaginationControls
           handlePrev={handlePrev}
           handleNext={handleNext}
           prevUrl={prevUrl}
           nextUrl={nextUrl}
         />
-      </div>
       <ul>
         {speciesList.map((species) => {
           const urlParts = species.url.split("/");

@@ -15,22 +15,12 @@ const { data: planetList, loading, error, handleNext, handlePrev, prevUrl, nextU
   return (
     <div>
       <h2>Lista de Planetas</h2>
-      <div className="pagination-controls btn-group my-3">
-        <button
-          className="btn btn-outline-warning"
-          onClick={handlePrev}
-          disabled={!prevUrl}
-        >
-          Anterior
-        </button>
-        <button
-          className="btn btn-outline-warning"
-          onClick={handleNext}
-          disabled={!nextUrl}
-        >
-          Siguiente
-        </button>
-      </div>
+        <PaginationControls
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          prevUrl={prevUrl}
+          nextUrl={nextUrl}
+        />
       <ul>
         {planetList.map((planet) => {
           const urlParts = planet.url.split("/");
