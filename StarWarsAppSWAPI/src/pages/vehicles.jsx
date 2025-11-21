@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import useSwapiList  from "../hooks/useSwapiList.jsx";
+import PaginationControls from "../components/PaginationControl.jsx";
+
 
 function Vehicles() {
 const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
@@ -14,20 +16,12 @@ const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, next
     <div>
       <h2>Lista de Vehiculos</h2>
       <div className="pagination-controls btn-group my-3">
-        <button
-          className="btn btn-outline-warning"
-          onClick={handlePrev}
-          disabled={!prevUrl}
-        >
-          Anterior
-        </button>
-        <button
-          className="btn btn-outline-warning"
-          onClick={handleNext}
-          disabled={!nextUrl}
-        >
-          Siguiente
-        </button>
+         <PaginationControls
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          prevUrl={prevUrl}
+          nextUrl={nextUrl}
+        />
       </div>
       <ul>
         {vehicleList.map((vehicle) => {

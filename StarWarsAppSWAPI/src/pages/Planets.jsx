@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import useSwapiList  from "../hooks/useSwapiList.jsx";
+import PaginationControls from "../components/PaginationControl.jsx";
+
 
 function Planets() {
 const { data: planetList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/planets/");
@@ -12,7 +14,7 @@ const { data: planetList, loading, error, handleNext, handlePrev, prevUrl, nextU
   }
   return (
     <div>
-      <h2>Lista de Vehiculos</h2>
+      <h2>Lista de Planetas</h2>
       <div className="pagination-controls btn-group my-3">
         <button
           className="btn btn-outline-warning"

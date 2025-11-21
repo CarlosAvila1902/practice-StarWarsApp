@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
-import useSwapiList  from "../hooks/useSwapiList.jsx";
+import useSwapiList from "../hooks/useSwapiList.jsx";
+import PaginationControls from "../components/PaginationControl.jsx";
 
 function People() {
-
-const { data: peopleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
-
+  const {
+    data: peopleList,
+    loading,
+    error,
+    handleNext,
+    handlePrev,
+    prevUrl,
+    nextUrl,
+  } = useSwapiList("https://swapi.dev/api/people/");
 
   if (loading) {
     return <h2>cargando...</h2>;
@@ -16,12 +23,12 @@ const { data: peopleList, loading, error, handleNext, handlePrev, prevUrl, nextU
     <div>
       <h2>Lista de Personajes</h2>
       <div className="pagination-controls btn-group my-3">
-        <button className="btn btn-outline-warning" onClick={handlePrev} disabled={!prevUrl}>
-          Anterior
-        </button>
-        <button className="btn btn-outline-warning" onClick={handleNext} disabled={!nextUrl}>
-          Siguiente
-        </button>
+        <PaginationControls
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          prevUrl={prevUrl}
+          nextUrl={nextUrl}
+        />
       </div>
       <ul>
         {peopleList.map((person) => {

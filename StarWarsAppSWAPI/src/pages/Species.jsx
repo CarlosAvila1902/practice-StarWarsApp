@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import useSwapiList  from "../hooks/useSwapiList.jsx";
+import PaginationControls from "../components/PaginationControl.jsx";
+
 
 
 function Species() {
@@ -15,12 +17,12 @@ function Species() {
     <div>
       <h2>Lista de Especies</h2>
       <div className="pagination-controls btn-group my-3">
-        <button className="btn btn-outline-warning" onClick={handlePrev} disabled={!prevUrl}>
-          Anterior
-        </button>
-        <button className="btn btn-outline-warning" onClick={handleNext} disabled={!nextUrl}>
-          Siguiente
-        </button>
+         <PaginationControls
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          prevUrl={prevUrl}
+          nextUrl={nextUrl}
+        />
       </div>
       <ul>
         {speciesList.map((species) => {
