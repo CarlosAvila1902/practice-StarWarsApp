@@ -1,39 +1,10 @@
-import { useState, useEffect } from "react"; //le hooks
 import { Link } from "react-router-dom";
-import { fetchDataFromApi } from "../services/swapiService.js";
+import useSwapiList  from "../hooks/useSwapiList.jsx";
 
 function People() {
-  const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/people/");
-  const [peopleList, setPeopleList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [nextUrl, setNextUrl] = useState(null);
-  const [prevUrl, setPrevUrl] = useState(null);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
-    async function fetchData() {
-      try {
-        const data = await fetchDataFromApi(apiUrl);
-        setPeopleList(data.results);
-        setNextUrl(data.next);
-        setPrevUrl(data.previous);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, [apiUrl]);
+const { data: peopleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
 
-  const handleNext = () => {
-    setApiUrl(nextUrl);
-  };
-  const handlePrev = () => {
-    setApiUrl(prevUrl);
-  };
 
   if (loading) {
     return <h2>cargando...</h2>;

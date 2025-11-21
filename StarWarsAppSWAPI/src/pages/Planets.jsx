@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import useSwapiList  from "../hooks/useSwapiList.jsx";
 
-function Vehicles() {
-const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
+function Planets() {
+const { data: planetList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/planets/");
 
   if (loading) {
     return <h2>cargando...</h2>;
@@ -30,12 +30,12 @@ const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, next
         </button>
       </div>
       <ul>
-        {vehicleList.map((vehicle) => {
-          const urlParts = vehicle.url.split("/");
-          const vehicleId = urlParts[urlParts.length - 2];
+        {planetList.map((planet) => {
+          const urlParts = planet.url.split("/");
+          const planetId = urlParts[urlParts.length - 2];
           return (
-            <li key={vehicle.name}>
-              <Link to={`/vehicles/${vehicleId}`}>{vehicle.name}</Link>
+            <li key={planet.name}>
+              <Link to={`/planets/${planetId}`}>{planet.name}</Link>
             </li>
           );
         })}
@@ -44,4 +44,4 @@ const { data: vehicleList, loading, error, handleNext, handlePrev, prevUrl, next
   );
 }
 
-export default Vehicles;
+export default Planets;

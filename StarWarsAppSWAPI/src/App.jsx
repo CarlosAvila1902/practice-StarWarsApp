@@ -9,8 +9,10 @@ import Species from "./pages/Species.jsx";
 import SpeciesDetails from "./pages/SpeciesDetails.jsx";
 import Vehicles from "./pages/vehicles.jsx";
 import VehicleDetails from "./pages/VehicleDetails.jsx";
+import Planets from "./pages/Planets.jsx";
 import { Routes, Route } from "react-router-dom"; // No necesitas NavLink aquí
 import "./App.css";
+import PlanetDetails from "./pages/planetDetails.jsx";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <main className="container mt-4 mb-5">
         <Routes>
           <Route path="/" element={<h2>Bienvenido! Elige un recurso.</h2>} />
+          <Route path="/planets" element={<Planets />} />
+          <Route path="/planets/:planetId" element={<PlanetDetails />} />
           <Route path="/species" element={<Species />} />
           <Route path="/species/:speciesId" element={<SpeciesDetails />} />
           <Route path="/people" element={<People />} />

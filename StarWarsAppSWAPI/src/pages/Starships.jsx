@@ -1,41 +1,14 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchDataFromApi } from "../services/swapiService.js";
+import useSwapiList  from "../hooks/useSwapiList.jsx";
 
 function Starships() {
-  const [apiUrl, setApiUrl] = useState("https://swapi.dev/api/starships/");
-  const [starshipList, setStarshipList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [nextUrl, setNextUrl] = useState(null);
-  const [prevUrl, setPrevUrl] = useState(null);
+const { data: starshipList, loading, error, handleNext, handlePrev, prevUrl, nextUrl } = useSwapiList("https://swapi.dev/api/people/");
 
-  useEffect(() => {
-    setLoading(true);
-    async function fetchData() {
-      try {
-        const data = await fetchDataFromApi(apiUrl);
-        setStarshipList(data.results);
-        setNextUrl(data.next);
-        setPrevUrl(data.previous);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, [apiUrl]);
-
-  const handleNext = () => {
-    setApiUrl(nextUrl);
-  };
-
-  const handlePrev = () => {
-    setApiUrl(prevUrl);
-  };
 
   if (loading) {
     return <h2>Cargando...</h2>;
+  } if (error) {
+    return <h2 style={{ color: "red" }}>wait holdup: {error}</h2>;
   }
 
   return (

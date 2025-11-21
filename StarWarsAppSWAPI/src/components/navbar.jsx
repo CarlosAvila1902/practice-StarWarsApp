@@ -9,6 +9,9 @@ function NavBar() {
         <NavLink className="nav-link" to="/">
           Inicio
         </NavLink>
+        <NavLink className="nav-link" to="/planets">
+          Planetas
+        </NavLink>
         <NavLink className="nav-link" to="/films">
           Películas
         </NavLink>
